@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ch.koalix.koalix-001-1</groupId>
+    <artifactId>accounting_app</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <scm>
+        <connection>scm:git@github.com:Hacont/angular2-sandbox.git</connection>
+    </scm>
+
+    <modules>
+        <module>acccounting_app-web</module>
+        <module>acccounting_app-web</module>
+    </modules>
+
+    <properties>
+        <jboss.jsxrs.api.version>1.0.0.Final</jboss.jsxrs.api.version>
+        <jboss.ejb.api.version>1.0.0.Final</jboss.ejb.api.version>
+        <slf4j.version>1.7.14</slf4j.version>
+        <junit.version>4.12</junit.version>
+        <resteasy.version>3.0.12.Final</resteasy.version>
+        <mockito.version>1.10.19</mockito.version>
+        <apache.commons.io.version>1.3.2</apache.commons.io.version>
+        <jboss.annotations.api.version>1.0.0.Final</jboss.annotations.api.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ch.koalix.koalix-001-1</groupId>
+                <artifactId>accounting_app-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
