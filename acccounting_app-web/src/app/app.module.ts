@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from "./app.component";
 import { NgGridModule } from "angular2-grid";
+import { NgSemanticModule } from 'ng-semantic';
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -14,7 +15,8 @@ import { NgGridModule } from "angular2-grid";
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgGridModule
+    NgGridModule,
+    NgSemanticModule
   ],
   declarations: [
       AppComponent
