@@ -1,29 +1,19 @@
-<p-dataTable [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
-    <header>CRUD for Cars</header>
-    <p-column field="vin" header="Vin" [sortable]="true"></p-column>
-    <p-column field="year" header="Year" [sortable]="true"></p-column>
-    <p-column field="brand" header="Brand" [sortable]="true"></p-column>
-    <p-column field="color" header="Color" [sortable]="true"></p-column>
+<p-dataTable [value]="accounts" selectionMode="single" [(selection)]="selectedAccount" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+    <header>Konten</header>
+    <p-column field="accountNumber" header="Kontonummer" [sortable]="true"></p-column>
+    <p-column field="accountName" header="Beschreibung" [sortable]="true"></p-column>
     <footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></footer>
 </p-dataTable>
 
-<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
-    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="car">
+<p-dialog header="Account Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="account">
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="vin">Vin</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="vin" [(ngModel)]="car.vin" /></div>
+            <div class="ui-grid-col-4"><label for="accountNumber">Kontonummer</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="accountNumber" [(ngModel)]="account.accountNumber" /></div>
         </div>
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="year">Year</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="year" [(ngModel)]="car.year" /></div>
-        </div>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="brand">Brand</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="brand" [(ngModel)]="car.brand" /></div>
-        </div>
-        <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="color">Color</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="color" [(ngModel)]="car.color" /></div>
+            <div class="ui-grid-col-4"><label for="accountName">Beschreibung</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="accountName" [(ngModel)]="account.accountName" /></div>
         </div>
     </div>
     <footer>

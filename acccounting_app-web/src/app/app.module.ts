@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from "./app.component";
-import { NgGridModule } from "angular2-grid";
-import {AccountManagement} from "./account_management/account-management.component";
-import {DataTableModule} from "primeng/components/datatable/datatable";
-import {HttpModule} from "@angular/http";
-import {CarService} from "./account_management/carservice";
-import {DialogModule} from "primeng/components/dialog/dialog";
+import { HttpModule } from '@angular/http';
+import { AppComponent } from './app.component';
+import { NgGridModule } from 'angular2-grid';
+import { AccountManagement } from './account_management/account-management.component';
+import { DataTableModule } from 'primeng/components/datatable/datatable';
+import { DialogModule } from 'primeng/components/dialog/dialog';
+import { AccountService } from './account_management/accountService';
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
   bootstrap: [ AppComponent ],
-  imports: [ // import Angular's modules
+  imports: [
       BrowserModule,
       FormsModule,
+      HttpModule,
       NgGridModule,
       DataTableModule,
-      HttpModule,
       DialogModule
   ],
   declarations: [
@@ -27,7 +27,7 @@ import {DialogModule} from "primeng/components/dialog/dialog";
       AccountManagement
   ],
   providers: [
-      CarService
+      AccountService
   ]
 })
 export class AppModule {

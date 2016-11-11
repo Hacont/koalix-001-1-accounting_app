@@ -1,9 +1,9 @@
 /**
  * Created by Hacont on 22.07.2016.
  */
-import {Component, OnInit} from '@angular/core';
-import {Car} from "./car";
-import {CarService} from "./carservice";
+import { Component, OnInit } from '@angular/core';
+import { Account } from './account';
+import { AccountService } from './accountService';
 
 
 
@@ -18,62 +18,66 @@ export class AccountManagement implements OnInit {
 
     displayDialog: boolean;
 
-    car: Car = new PrimeCar();
+    account: Account = new PrimeAccount();
 
-    selectedCar: Car;
+    selectedAccount: Account;
 
-    newCar: boolean;
+    newAccount: boolean;
 
-    cars: Car[];
+    accounts: Account[];
 
-    constructor(private carService: CarService) { }
+    constructor(private accountService: AccountService) { }
 
     ngOnInit() {
-        this.carService.getCarsSmall().map(cars => this.cars = cars);
+        this.accountService.getAccounts().subscribe(accounts => {
+            this.accounts = accounts;
+        });
     }
 
     showDialogToAdd() {
-        this.newCar = true;
-        this.car = new PrimeCar();
+        this.newAccount = true;
+        this.account = new PrimeAccount();
         this.displayDialog = true;
     }
 
     save() {
-        if(this.newCar)
-            this.cars.push(this.car);
+        if(this.newAccount)
+            this.accountService.addAccount(this.account).subscribe(account => {
+                this.accounts.push(account);
+            })
         else
-            this.cars[this.findSelectedCarIndex()] = this.car;
+            this.accounts[this.findSelectedAccountIndex()] = this.account;
 
-        this.car = null;
+        this.account = null;
         this.displayDialog = false;
     }
 
     delete() {
-        this.cars.splice(this.findSelectedCarIndex(), 1);
-        this.car = null;
+        this.accounts.splice(this.findSelectedAccountIndex(), 1);
+        this.account = null;
         this.displayDialog = false;
     }
 
     onRowSelect(event) {
-        this.newCar = false;
-        this.car = this.cloneCar(event.data);
+        this.newAccount = false;
+        this.account = this.cloneAccount(event.data);
         this.displayDialog = true;
     }
 
-    cloneCar(c: Car): Car {
-        let car = new PrimeCar();
+    cloneAccount(c: Account): Account {
+        let account = new PrimeAccount();
         for(let prop in c) {
-            car[prop] = c[prop];
+            account[prop] = c[prop];
         }
-        return car;
+        return account;
     }
 
-    findSelectedCarIndex(): number {
-        return this.cars.indexOf(this.selectedCar);
+    findSelectedAccountIndex(): number {
+        return this.accounts.indexOf(this.selectedAccount);
     }
 }
 
-class PrimeCar implements Car {
+class PrimeAccount implements Account {
 
-    constructor(public vin?, public year?, public brand?, public color?) {}
+    constructor(public id?, public accountNumber?, public accountName?) {}
 }
