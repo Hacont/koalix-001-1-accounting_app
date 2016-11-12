@@ -116,14 +116,42 @@ module.exports = function (options) {
           loader: 'json-loader'
         },
 
+        /**
+         * SCSS loader.
+         */
+        {
+          test: /\.scss$/,
+          loaders: ["style", "css", "sass"]
+        },
+
+        {
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          // Inline small woff files and output them below font/.
+          // Set mimetype just in case.
+          loader: 'url',
+          query: {
+            name: 'font/[hash].[ext]',
+            limit: 5000,
+            mimetype: 'application/font-woff'
+          }
+        },
+        {
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: 'file',
+          query: {
+            name: 'font/[hash].[ext]'
+          }
+        },
+
         /*
-         * to string and css loader support for *.css files
+         * Raw loader support for *.css files
          * Returns file content as string
          *
+         * See: https://github.com/webpack/raw-loader
          */
         {
           test: /\.css$/,
-          loaders: ['to-string-loader', 'css-loader']
+          loader: 'raw-loader'
         },
 
         /* Raw loader support for *.html

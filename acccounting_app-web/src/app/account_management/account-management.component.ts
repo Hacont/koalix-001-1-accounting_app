@@ -5,9 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from './account';
 import { AccountService } from './accountService';
 
-
-
-
 @Component({
     selector: 'account-administration',
     templateUrl: './account-management.component.html'
