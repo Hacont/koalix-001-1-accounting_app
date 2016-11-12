@@ -11,7 +11,7 @@ import { AccountService } from './accountService';
 })
 
 
-export class AccountManagement implements OnInit {
+export class AccountManagementComponent implements OnInit {
 
     displayDialog: boolean;
 
