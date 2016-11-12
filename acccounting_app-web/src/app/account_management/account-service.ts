@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions, Response} from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Rating } from '../model/rating.model';
 import { Observable } from 'rxjs';
 
