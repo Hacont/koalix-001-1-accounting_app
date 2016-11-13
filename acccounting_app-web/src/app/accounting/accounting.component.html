@@ -1,1 +1,42 @@
-<h1>Accounting Component</h1>
+<p-dataTable [value]="accounts" selectionMode="single" [(selection)]="selectedAccount" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+    <header>Buchungen</header>
+    <p-column field="voucher" header="Beleg" [sortable]="true"></p-column>
+    <p-column field="clearingDate" header="Datum" [sortable]="true"></p-column>
+    <p-column field="description" header="Beschreibung" [sortable]="true"></p-column>
+    <p-column field="debit" header="Soll" [sortable]="true"></p-column>
+    <p-column field="credit" header="Haben" [sortable]="true"></p-column>
+    <p-column field="amount" header="Betrag" [sortable]="true"></p-column>
+    <footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></footer>
+</p-dataTable>
+
+<p-dialog header="Buchungen" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="accountingEntry">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="voucher">Beleg</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="voucher" [(ngModel)]="accountingEntry.voucher" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="description">Beschreibung</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="description" [(ngModel)]="accountingEntry.description" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="debit">Soll</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="debit" [(ngModel)]="accountingEntry.debit" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="credit">Haben</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="credit" [(ngModel)]="accountingEntry.credit" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="amount">Beschreibung</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="amount" [(ngModel)]="accountingEntry.amount" /></div>
+        </div>
+
+    </div>
+    <footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </footer>
+</p-dialog>

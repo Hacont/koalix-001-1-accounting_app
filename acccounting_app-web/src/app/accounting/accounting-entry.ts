@@ -1,6 +1,9 @@
-/**
- *
- *
- * Date: 12.11.2016
- * Author: Simon Riedener
- */
+export interface AccountingEntry {
+    id?;
+    voucher?;
+    clearingDate?;
+    description?;
+    debit?;
+    credit?;
+    amount?;
+}

@@ -11,6 +11,7 @@ import { TabMenuModule, DialogModule, DataTableModule } from 'primeng/primeng';
 import { RouterModule } from '@angular/router';
 import { AccountingComponent } from './accounting/accounting.component';
 import { BalanceComponent } from './balance/balance.component';
+import { AccountingEntryService } from './accounting/accounting-entry-service';
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -26,7 +27,7 @@ import { BalanceComponent } from './balance/balance.component';
       DataTableModule,
       DialogModule,
       TabMenuModule,
-      RouterModule,
+      RouterModule
   ],
   declarations: [
       AppComponent,
@@ -35,7 +36,8 @@ import { BalanceComponent } from './balance/balance.component';
       BalanceComponent
   ],
   providers: [
-      AccountService
+      AccountService,
+      AccountingEntryService
   ]
 })
 export class AppModule {
