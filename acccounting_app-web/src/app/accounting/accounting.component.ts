@@ -4,6 +4,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountingEntry } from './accounting-entry';
 import { AccountingEntryService } from './accounting-entry-service';
+import { Account } from '../account_management/account';
+import { AccountService } from '../account_management/account-service';
 
 
 
@@ -23,11 +25,18 @@ export class AccountingComponent implements OnInit {
 
     accountingEntries: AccountingEntry[];
 
-    constructor(private accountingEntryService: AccountingEntryService) { }
+    accounts: Account[];
+
+    filteredAccounts: Account[];
+
+    constructor(private accountingEntryService: AccountingEntryService, private accountService: AccountService) { }
 
     ngOnInit() {
         this.accountingEntryService.getAccountingEntries().subscribe(accountingEntries => {
             this.accountingEntries = accountingEntries;
+        });
+        this.accountService.getAccounts().subscribe(accounts => {
+            this.accounts = accounts;
         });
     }
 
@@ -38,12 +47,13 @@ export class AccountingComponent implements OnInit {
     }
 
     save() {
-        if(this.newAccountingEntry)
+        if (this.newAccountingEntry) {
             this.accountingEntryService.addAccountingEntry(this.accountingEntry).subscribe(accountingEntry => {
                 this.accountingEntries.push(accountingEntry);
-            })
-        else
+            });
+        } else {
             this.accountingEntries[this.findSelectedAccountingEntryIndex()] = this.accountingEntry;
+        }
 
         this.accountingEntry = null;
         this.displayDialog = false;
@@ -63,7 +73,7 @@ export class AccountingComponent implements OnInit {
 
     cloneAccountingEntry(c: AccountingEntry): AccountingEntry {
         let accountingEntry = new PrimeAccountingEntry();
-        for(let prop in c) {
+        for (let prop in c) {
             accountingEntry[prop] = c[prop];
         }
         return accountingEntry;
@@ -71,6 +81,25 @@ export class AccountingComponent implements OnInit {
 
     findSelectedAccountingEntryIndex(): number {
         return this.accountingEntries.indexOf(this.selectedAccountingEntry);
+    }
+
+    filterAccounts(event) {
+        this.filteredAccounts = [];
+        for (let i = 0; i < this.accounts.length; i++) {
+            let account = this.accounts[i];
+            if (account.accountNumber.indexOf(event.query) === 0) {
+                this.filteredAccounts.push(account);
+            }
+        }
+    }
+
+    handleDropdownClick() {
+        this.filteredAccounts = [];
+
+        // mimic remote call
+        setTimeout(() => {
+            this.filteredAccounts = this.accounts;
+        }, 100);
     }
 }
 
@@ -82,7 +111,10 @@ class PrimeAccountingEntry implements AccountingEntry {
                 public description?,
                 public debit?,
                 public credit?,
-                public amount?) {}
+                public amount?) {
+    }
 }
+
+
 
 

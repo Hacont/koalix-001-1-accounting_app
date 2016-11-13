@@ -14,6 +14,7 @@ import { BalanceComponent } from './balance/balance.component';
 import { AccountingEntryService } from './accounting/accounting-entry-service';
 import { ButtonModule } from 'primeng/components/button/button';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { AutoCompleteModule } from 'primeng/components/autocomplete/autocomplete';
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -32,7 +33,8 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
       RouterModule,
       ButtonModule,
       DialogModule,
-      InputTextModule
+      InputTextModule,
+      AutoCompleteModule
   ],
   declarations: [
       AppComponent,

@@ -10,7 +10,7 @@
 </p-dataTable>
 
 <!-- Dialog to add, edit an accounting entry -->
-<p-dialog header="Buchungen" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+<p-dialog header="Buchungen" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="accountingEntry">
         <div class="ui-grid-row">
             <div class="ui-grid-col-4"><label for="voucher">Beleg</label></div>
@@ -21,15 +21,24 @@
             <div class="ui-grid-col-8"><input pInputText id="description" [(ngModel)]="accountingEntry.description" /></div>
         </div>
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="debit">Soll</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="debit" [(ngModel)]="accountingEntry.debit" /></div>
+            <div class="ui-grid-col-4"><label>Soll</label></div>
+            <div class="ui-grid-col-8">
+                <p-autoComplete [(ngModel)]="account" field="accountName" [suggestions]="filteredAccounts" (completeMethod)="filterAccounts($event)"
+                                [minLength]="1" placeholder="Kontonummer oder -name" [dropdown]="true" (onDropdownClick)="handleDropdownClick($event)">
+                    <template let-account>
+                        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+                            <b>{{account.accountNumber}}</b> - <i>{{account.accountName}}</i>
+                        </div>
+                    </template>
+                </p-autoComplete>
+            </div>
         </div>
         <div class="ui-grid-row">
             <div class="ui-grid-col-4"><label for="credit">Haben</label></div>
             <div class="ui-grid-col-8"><input pInputText id="credit" [(ngModel)]="accountingEntry.credit" /></div>
         </div>
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="amount">Beschreibung</label></div>
+            <div class="ui-grid-col-4"><label for="amount">Betrag</label></div>
             <div class="ui-grid-col-8"><input pInputText id="amount" [(ngModel)]="accountingEntry.amount" /></div>
         </div>
 
